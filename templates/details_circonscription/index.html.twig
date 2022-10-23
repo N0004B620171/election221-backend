@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailsCirconscription index{% endblock %}
+
+{% block body %}
+    <h1>DetailsCirconscription index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>PosistionGeographique</th>
+                <th>NbreInscris</th>
+                <th>NbreSuffExprime</th>
+                <th>SuffValable</th>
+                <th>SuffInvalable</th>
+                <th>SuffReparti</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for details_circonscription in details_circonscriptions %}
+            <tr>
+                <td>{{ details_circonscription.id }}</td>
+                <td>{{ details_circonscription.nom }}</td>
+                <td>{{ details_circonscription.posistionGeographique }}</td>
+                <td>{{ details_circonscription.nbreInscris }}</td>
+                <td>{{ details_circonscription.nbreSuffExprime }}</td>
+                <td>{{ details_circonscription.suffValable }}</td>
+                <td>{{ details_circonscription.suffInvalable }}</td>
+                <td>{{ details_circonscription.suffReparti }}</td>
+                <td>
+                    <a href="{{ path('app_details_circonscription_show', {'id': details_circonscription.id}) }}">show</a>
+                    <a href="{{ path('app_details_circonscription_edit', {'id': details_circonscription.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_details_circonscription_new') }}">Create new</a>
+{% endblock %}

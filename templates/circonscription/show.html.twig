@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Circonscription{% endblock %}
+
+{% block body %}
+    <h1>Circonscription</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ circonscription.id }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ circonscription.region }}</td>
+            </tr>
+            <tr>
+                <th>Departement</th>
+                <td>{{ circonscription.departement }}</td>
+            </tr>
+            <tr>
+                <th>Arrondissement</th>
+                <td>{{ circonscription.arrondissement }}</td>
+            </tr>
+            <tr>
+                <th>Commune</th>
+                <td>{{ circonscription.commune }}</td>
+            </tr>
+            <tr>
+                <th>Bureau</th>
+                <td>{{ circonscription.bureau }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_circonscription_index') }}">back to list</a>
+
+    <a href="{{ path('app_circonscription_edit', {'id': circonscription.id}) }}">edit</a>
+
+    {{ include('circonscription/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailsCirconscription{% endblock %}
+
+{% block body %}
+    <h1>DetailsCirconscription</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ details_circonscription.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ details_circonscription.nom }}</td>
+            </tr>
+            <tr>
+                <th>PosistionGeographique</th>
+                <td>{{ details_circonscription.posistionGeographique }}</td>
+            </tr>
+            <tr>
+                <th>NbreInscris</th>
+                <td>{{ details_circonscription.nbreInscris }}</td>
+            </tr>
+            <tr>
+                <th>NbreSuffExprime</th>
+                <td>{{ details_circonscription.nbreSuffExprime }}</td>
+            </tr>
+            <tr>
+                <th>SuffValable</th>
+                <td>{{ details_circonscription.suffValable }}</td>
+            </tr>
+            <tr>
+                <th>SuffInvalable</th>
+                <td>{{ details_circonscription.suffInvalable }}</td>
+            </tr>
+            <tr>
+                <th>SuffReparti</th>
+                <td>{{ details_circonscription.suffReparti }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_details_circonscription_index') }}">back to list</a>
+
+    <a href="{{ path('app_details_circonscription_edit', {'id': details_circonscription.id}) }}">edit</a>
+
+    {{ include('details_circonscription/_delete_form.html.twig') }}
+{% endblock %}

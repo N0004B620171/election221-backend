@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Circonscription index{% endblock %}
+
+{% block body %}
+    <h1>Circonscription index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Region</th>
+                <th>Departement</th>
+                <th>Arrondissement</th>
+                <th>Commune</th>
+                <th>Bureau</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for circonscription in circonscriptions %}
+            <tr>
+                <td>{{ circonscription.id }}</td>
+                <td>{{ circonscription.region }}</td>
+                <td>{{ circonscription.departement }}</td>
+                <td>{{ circonscription.arrondissement }}</td>
+                <td>{{ circonscription.commune }}</td>
+                <td>{{ circonscription.bureau }}</td>
+                <td>
+                    <a href="{{ path('app_circonscription_show', {'id': circonscription.id}) }}">show</a>
+                    <a href="{{ path('app_circonscription_edit', {'id': circonscription.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_circonscription_new') }}">Create new</a>
+{% endblock %}
