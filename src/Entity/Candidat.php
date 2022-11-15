@@ -36,7 +36,7 @@ class Candidat
     private ?string $adresse = null;
 
     #[ORM\OneToOne(mappedBy: 'candidat', cascade: ['persist', 'remove'])]
-    private ?Electeur $electeur = null;
+    private ?User $electeur = null;
 
     public function getId(): ?int
     {
@@ -127,12 +127,12 @@ class Candidat
         return $this;
     }
 
-    public function getElecteur(): ?Electeur
+    public function getElecteur(): ?User
     {
         return $this->electeur;
     }
 
-    public function setElecteur(?Electeur $electeur): self
+    public function setElecteur(?User $electeur): self
     {
         // unset the owning side of the relation if necessary
         if ($electeur === null && $this->electeur !== null) {

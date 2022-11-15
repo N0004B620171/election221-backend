@@ -13,54 +13,25 @@ class DetailsCirconscription
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $posistionGeographique = null;
-
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $nbreInscris = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $nbreSuffExprime = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $suffValable = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $suffInvalable = null;
-
-    #[ORM\Column]
-    private ?int $suffReparti = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getNom(): ?string
+    public function setId(int $i)
     {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPosistionGeographique(): ?string
-    {
-        return $this->posistionGeographique;
-    }
-
-    public function setPosistionGeographique(string $posistionGeographique): self
-    {
-        $this->posistionGeographique = $posistionGeographique;
-
-        return $this;
+         $this->id=$i;
     }
 
     public function getNbreInscris(): ?int
@@ -110,16 +81,8 @@ class DetailsCirconscription
 
         return $this;
     }
-
-    public function getSuffReparti(): ?int
+    public function __toString()
     {
-        return $this->suffReparti;
-    }
-
-    public function setSuffReparti(int $suffReparti): self
-    {
-        $this->suffReparti = $suffReparti;
-
-        return $this;
+        return $this->suffValable;
     }
 }

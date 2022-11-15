@@ -22,19 +22,15 @@ class Circonscription
     private ?string $departement = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $arrondissement = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $commune = null;
 
-    #[ORM\Column]
-    private ?int $bureau = null;
+    
 
-    #[ORM\OneToMany(mappedBy: 'circonscription', targetEntity: Electeur::class)]
+    #[ORM\OneToMany(mappedBy: 'circonscription', targetEntity: User::class)]
     private Collection $electeurs;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?DetailsCirconscription $detailsCirconscription = null;
 
     public function __construct()
@@ -71,17 +67,7 @@ class Circonscription
         return $this;
     }
 
-    public function getArrondissement(): ?string
-    {
-        return $this->arrondissement;
-    }
-
-    public function setArrondissement(string $arrondissement): self
-    {
-        $this->arrondissement = $arrondissement;
-
-        return $this;
-    }
+   
 
     public function getCommune(): ?string
     {
@@ -95,27 +81,15 @@ class Circonscription
         return $this;
     }
 
-    public function getBureau(): ?int
-    {
-        return $this->bureau;
-    }
-
-    public function setBureau(int $bureau): self
-    {
-        $this->bureau = $bureau;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Electeur>
+     * @return Collection<int, User>
      */
     public function getElecteurs(): Collection
     {
         return $this->electeurs;
     }
 
-    public function addElecteur(Electeur $electeur): self
+    public function addUser(User $electeur): self
     {
         if (!$this->electeurs->contains($electeur)) {
             $this->electeurs->add($electeur);
@@ -125,7 +99,7 @@ class Circonscription
         return $this;
     }
 
-    public function removeElecteur(Electeur $electeur): self
+    public function removeElecteur(User $electeur): self
     {
         if ($this->electeurs->removeElement($electeur)) {
             // set the owning side to null (unless already changed)

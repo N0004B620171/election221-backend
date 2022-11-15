@@ -9,16 +9,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 #[Route('/details/circonscription')]
-class DetailsCirconscriptionController extends AbstractController
+class DetailsCirconscriptionController extends AbstractFOSRestController
 {
-    #[Route('/', name: 'app_details_circonscription_index', methods: ['GET'])]
-    public function index(DetailsCirconscriptionRepository $detailsCirconscriptionRepository): Response
+    /**
+     * @Rest\Get("/", name="app_details_circonscription_index")
+     * Rest\View(StatusCode = 200)
+     */
+
+    //    #[Route('/', name: 'app_details_circonscription_index', methods: ['GET'])]
+    public function index(DetailsCirconscriptionRepository $detailsCirconscriptionRepository)
     {
-        return $this->render('details_circonscription/index.html.twig', [
-            'details_circonscriptions' => $detailsCirconscriptionRepository->findAll(),
-        ]);
+        return $detailsCirconscriptionRepository->findAll();
     }
 
     #[Route('/new', name: 'app_details_circonscription_new', methods: ['GET', 'POST'])]
@@ -69,7 +74,7 @@ class DetailsCirconscriptionController extends AbstractController
     #[Route('/{id}', name: 'app_details_circonscription_delete', methods: ['POST'])]
     public function delete(Request $request, DetailsCirconscription $detailsCirconscription, DetailsCirconscriptionRepository $detailsCirconscriptionRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$detailsCirconscription->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $detailsCirconscription->getId(), $request->request->get('_token'))) {
             $detailsCirconscriptionRepository->remove($detailsCirconscription, true);
         }
 
