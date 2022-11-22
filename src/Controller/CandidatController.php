@@ -28,6 +28,15 @@ class CandidatController extends AbstractFOSRestController
     {
         return $candidatRepository->findAll();
     }
+    /**
+     * @Rest\Get("/resultat", name="app_canat_index")
+     * Rest\View(StatusCode = 200)
+     */
+    // #[Route('/', name: 'app_candidat_index', methods: ['GET'])]
+    public function resultat(CandidatRepository $candidatRepository)
+    {
+        return $candidatRepository->findAll();
+    }
 
     /**
      * @Rest\Post("/new", name="app_candidat_new")

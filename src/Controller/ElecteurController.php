@@ -53,6 +53,15 @@ class ElecteurController extends AbstractFOSRestController
         return $electeurRepository->findOneByEmail($request->get('email'));
     }
     /**
+     * @Rest\Get("/chercherByCni/{cni}", name="app_elctr_index")
+     * Rest\View(StatusCode = 200)
+     */
+
+    public function chercheByCni(Request $request, UserRepository $electeurRepository)
+    {
+        return $electeurRepository->findOneByCni($request->get('cni'));
+    }
+    /**
      * @Rest\Post("/new", name="app_electeur_new")
      * Rest\View(StatusCode = 200)
      */
